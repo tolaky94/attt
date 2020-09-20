@@ -24,8 +24,23 @@
         return mysqli_query($conn, $sql);
     }
 
-    function get($conn) {
+    function get($conn, $search = '') {
         $sql = "Select * from posts";
+        if(strlen($search) > 0) {
+            $sql .= " where name_post = '".$search."'";
+        }
+        
         return mysqli_query($conn, $sql);
+    }
+
+    function search($conn, $search = '') {
+        $sql = "Select * from posts";
+        if(strlen($search) > 0) {
+            $sql .= " where name_post = '".$search."'";
+            return mysqli_query($conn, $sql);
+        }
+
+        return false;
+        
     }
 ?>

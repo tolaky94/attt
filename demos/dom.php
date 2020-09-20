@@ -14,5 +14,5 @@
 </div>
 
 <b>Nội dung ví dụ</b>
-<script src="http://gist-it.appspot.com/https://github.com/tolaky94/attt/blob/master/demos/dom.php"></script>
+<script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Ftolaky94%2Fattt%2Fblob%2Fmaster%2Fdemos%2Fdom.php&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on"></script>
 <?php require_once(__DIR__.'/../inc/footer.php'); ?>

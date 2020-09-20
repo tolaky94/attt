@@ -18,6 +18,9 @@
                 <li class="nav-item">
                     <a class="nav-link" id="dom-tab" data-toggle="tab" href="#dom" role="tab" aria-controls="dom" aria-selected="false">DOM Based XSS</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="giaiphap-tab" data-toggle="tab" href="#giaiphap" role="tab" aria-controls="giaiphap" aria-selected="false">Giải pháp</a>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -125,6 +128,17 @@
                     <br><img class="img-fluid" src="./assets/images/dom-3.png" />
                     <br>
                     <a href="./demos/dom.php?message=Fill the form">Demo DOM Based XSS</a>
+                </div>
+                <div class="tab-pane fade" id="giaiphap" role="tabpanel" aria-labelledby="dom-giaiphap">
+                    <p>
+                        - Thực hiện kiểm tra tham số đầu vào trước khi sử dụng. (Validator, Escape, Ép kiểu).
+                        <br>
+                        - Không bao giờ tin tưởng tham số truyền từ client. Bất ký tham số nào cũng đều có nguy cơ bị khai thác.
+                        <br>
+                        - Sử dụng các hàm có sẵn của framework để lấy giá trị tham số. Hạn chế dùng $_GET, $_POST
+                        <br>
+                        - Đối với Quản lý dự án cần review kỹ lưỡng code trước khi triển khai, phổ biến coding convention lại cho người mới trước khi join dự án.
+                    </p>
                 </div>
             </div>
         </div>
