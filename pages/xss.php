@@ -15,6 +15,9 @@
                 <li class="nav-item">
                     <a class="nav-link" id="stored-tab" data-toggle="tab" href="#stored" role="tab" aria-controls="stored" aria-selected="false">Stored XSS</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="dom-tab" data-toggle="tab" href="#dom" role="tab" aria-controls="dom" aria-selected="false">DOM Based XSS</a>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -78,21 +81,50 @@
                     <br>
                 </div>
                 <div class="tab-pane fade" id="stored" role="tabpanel" aria-labelledby="stored-tab">
-                Khác với Reflected tấn công trực tiếp vào một số nạn nhân mà hacker nhắm đến, Stored XSS hướng đến nhiều nạn nhân hơn.
-                <br>
-                Lỗi này xảy ra khi ứng dụng web không kiểm tra kỹ các dữ liệu đầu vào trước khi lưu vào cơ sở dữ liệu (ở đây tôi dùng khái niệm này để chỉ database, file hay những khu vực khác nhằm lưu trữ dữ liệu của ứng dụng web). 
-                <br>
-                Ví dụ như các form góp ý, các comment … trên các trang web. 
-                <br>
-                Với kỹ thuật Stored XSS , hacker không khai thác trực tiếp mà phải thực hiện tối thiểu qua 2 bước.
-                <br>
-                Đầu tiên hacker sẽ thông qua các điểm đầu vào (form, input, textarea…) không được kiểm tra kỹ để chèn vào CSDL các đoạn mã nguy hiểm.
-                <br><img class="img-fluid" src="./assets/images/store-1.png" />
-                <br>
-                Tiếp theo, khi người dùng truy cập vào ứng dụng web và thực hiện các thao tác liên quan đến dữ liệu được lưu này, đoạn mã của hacker sẽ được thực thi trên trình duyệt người dùng.
-                <br><img class="img-fluid" src="./assets/images/store-2.png" />
-                <br>
-                <a href="./demos/stored.php">Demo Stored Xss</a>
+                    Khác với Reflected tấn công trực tiếp vào một số nạn nhân mà hacker nhắm đến, Stored XSS hướng đến nhiều nạn nhân hơn.
+                    <br>
+                    Lỗi này xảy ra khi ứng dụng web không kiểm tra kỹ các dữ liệu đầu vào trước khi lưu vào cơ sở dữ liệu (ở đây tôi dùng khái niệm này để chỉ database, file hay những khu vực khác nhằm lưu trữ dữ liệu của ứng dụng web). 
+                    <br>
+                    Ví dụ như các form góp ý, các comment … trên các trang web. 
+                    <br>
+                    Với kỹ thuật Stored XSS , hacker không khai thác trực tiếp mà phải thực hiện tối thiểu qua 2 bước.
+                    <br>
+                    Đầu tiên hacker sẽ thông qua các điểm đầu vào (form, input, textarea…) không được kiểm tra kỹ để chèn vào CSDL các đoạn mã nguy hiểm.
+                    <br><img class="img-fluid" src="./assets/images/store-1.png" />
+                    <br>
+                    Tiếp theo, khi người dùng truy cập vào ứng dụng web và thực hiện các thao tác liên quan đến dữ liệu được lưu này, đoạn mã của hacker sẽ được thực thi trên trình duyệt người dùng.
+                    <br><img class="img-fluid" src="./assets/images/store-2.png" />
+                    <br>
+                    <a href="./demos/stored.php">Demo Stored Xss</a>
+                </div>
+                <div class="tab-pane fade" id="dom" role="tabpanel" aria-labelledby="dom-tab">
+                    DOM Based XSS là kỹ thuật khai thác XSS dựa trên việc thay đổi cấu trúc DOM của tài liệu, cụ thể là HTML. Chúng ta cùng xem xét một ví dụ cụ thể sau.
+                    <br>
+                    Một website có URL đến trang đăng ký như sau:
+                    <br>
+                    http://example.com/register.php?message=Please fill in the form
+                    <br>
+                    Khi truy cập đến thì chúng ta thấy một Form rất bình thường
+                    <br><img class="img-fluid" src="./assets/images/dom-1.png" />
+                    <br>
+                    Thay vì truyền
+                    <br>
+                    message=Please fill in the form
+                    <br>
+                    thì truyền
+                    <br>
+                    <pre>
+                    <?php echo htmlspecialchars('
+                    message=<label>Gender</label><select class = "form-control" onchange="java_script_:show()"><option value="Male">Male</option><option value="Female">Female</option></select><script>function show(){alert();}</script>'); ?>
+                    </pre>
+                    <br>
+                    Khi đấy form đăng ký sẽ trở thành như thế này:
+                    <br><img class="img-fluid" src="./assets/images/dom-2.png" />
+                    <br>
+                    Người dùng sẽ chẳng chút nghi ngờ với một form “bình thường” như thế này, và khi lựa chọn giới tính, Script sẽ được thực thi
+                    <br><img class="img-fluid" src="./assets/images/dom-3.png" />
+                    <br>
+                    <a href="./demos/dom.php?message=Fill the form">Demo DOM Based XSS</a>
                 </div>
             </div>
         </div>
