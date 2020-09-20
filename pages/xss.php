@@ -13,7 +13,7 @@
                     <a class="nav-link" id="reflected-tab" data-toggle="tab" href="#reflected" role="tab" aria-controls="reflected" aria-selected="false">Reflected XSS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="khacphuc-tab" data-toggle="tab" href="#khacphuc" role="tab" aria-controls="khacphuc" aria-selected="false">Cách khắc phục</a>
+                    <a class="nav-link" id="stored-tab" data-toggle="tab" href="#stored" role="tab" aria-controls="stored" aria-selected="false">Stored XSS</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -73,21 +73,26 @@
                         <br>
                         <b> Demo </b>
                         <a href="./demos/reflected.php?name=<script>alert(document.cookie)</script>">Demo Reflected Xss</a>
+                        <br><img class="img-fluid" src="./assets/images/reflected.png" />
                     </p>
                     <br>
                 </div>
-                <div class="tab-pane fade" id="khacphuc" role="tabpanel" aria-labelledby="khacphuc-tab">
-                    <b>Ví dụ</b>
-
-                    <form>
-                        <div class="form-group">
-                            <label for="reflected">Input</label>
-                            <input type="text" class="form-control" id="reflected">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary">Gửi</button>
-                        </div>
-                    </form>
+                <div class="tab-pane fade" id="stored" role="tabpanel" aria-labelledby="stored-tab">
+                Khác với Reflected tấn công trực tiếp vào một số nạn nhân mà hacker nhắm đến, Stored XSS hướng đến nhiều nạn nhân hơn.
+                <br>
+                Lỗi này xảy ra khi ứng dụng web không kiểm tra kỹ các dữ liệu đầu vào trước khi lưu vào cơ sở dữ liệu (ở đây tôi dùng khái niệm này để chỉ database, file hay những khu vực khác nhằm lưu trữ dữ liệu của ứng dụng web). 
+                <br>
+                Ví dụ như các form góp ý, các comment … trên các trang web. 
+                <br>
+                Với kỹ thuật Stored XSS , hacker không khai thác trực tiếp mà phải thực hiện tối thiểu qua 2 bước.
+                <br>
+                Đầu tiên hacker sẽ thông qua các điểm đầu vào (form, input, textarea…) không được kiểm tra kỹ để chèn vào CSDL các đoạn mã nguy hiểm.
+                <br><img class="img-fluid" src="./assets/images/store-1.png" />
+                <br>
+                Tiếp theo, khi người dùng truy cập vào ứng dụng web và thực hiện các thao tác liên quan đến dữ liệu được lưu này, đoạn mã của hacker sẽ được thực thi trên trình duyệt người dùng.
+                <br><img class="img-fluid" src="./assets/images/store-2.png" />
+                <br>
+                <a href="./demos/stored.php">Demo Stored Xss</a>
                 </div>
             </div>
         </div>
