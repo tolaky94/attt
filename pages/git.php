@@ -13,7 +13,7 @@
                     <a class="nav-link" id="vidu-tab" data-toggle="tab" href="#vidu" role="tab" aria-controls="vidu" aria-selected="false">Ví dụ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Cách khắc phục</a>
+                    <a class="nav-link" id="khacphuc-tab" data-toggle="tab" href="#khacphuc" role="tab" aria-controls="khacphuc" aria-selected="false">Cách khắc phục</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -35,22 +35,36 @@
                     <br>
                     Đường dẫn lộ cấu hình: <a href="./.git/config"> .git/config </a>
                     <br>
-                    Tải Git-Dumper.txt : <a href="./assets/tools/gitdumper.txt"> gitdumper.txt </a>
+                    Sử dụng git Dumper để clone website : <a href="./assets/tools/gitdumper.txt"> GitDumper </a>
                     <br>
-                    Đổi tên file thành gitdumper.sh sau đó chạy lệnh sau : ./gitdumper.sh http://locahost/.git/ test/
+                    Đổi tên file thành gitdumper.sh sau đó chạy lệnh sau : ./gitdumper.sh http://locahost/attt/.git/ source/
+                    <br>
+                    Chạy tiếp lệnh dưới đây
+                    <br>
+                    git checkout -- .
                     <br>
                     Kết quả : 
+                    <img class="img-fluid" src="./assets/images/git.png" />
+                    <br>
+                    Như vậy qua các lỗ hổng trên chúng ta thấy khi git bị lộ config thì coi như chả còn gì về mặt bảo mật code. việc này các bạn khi làm cho sản phẩm phải hết sức lưu ý cấu hình không được cho lộ ra ngoài không cho truy cập vào. tránh những trường hợp đáng tiếc xảy ra.
+                    <br>
+                    Trường hợp với SVN, để lộ file .env, lộ backup code, file log cũng tương tự như vậy. Hacker sẽ có thông tin để tấn công phần mềm của bạn.
                 </div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    Tôi sẽ clone chính website này khi có được thông tin cấu hình git.
+                <div class="tab-pane fade" id="khacphuc" role="tabpanel" aria-labelledby="khacphuc-tab">
+                    <b>Cách 1</b>: Cấu hình Webserver từ chối truy cập đến những file này.
+                    <pre><code class="apache">
+                        <?php echo htmlspecialchars('<DirectoryMatch "^\.git">
+                            Require all denied
+                        </DirectoryMatch>
+
+                        <FilesMatch "^\.git">
+                            Require all denied
+                        </FilesMatch>'); ?>
+                    </code></pre>
                     <br>
-                    Đường dẫn lộ cấu hình: <a href="./.git/config"> .git/config </a>
+                    <b>Cách 2</b>: Sử dụng htaccess từ chối truy cập đến những file này.
                     <br>
-                    Tải Git-Dumper.txt : <a href="./assets/tools/gitdumper.txt"> gitdumper.txt </a>
-                    <br>
-                    Đổi tên file thành gitdumper.sh sau đó chạy lệnh sau : ./gitdumper.sh http://locahost/.git/ test/
-                    <br>
-                    Kết quả : 
+                    <b>Lưu ý</b>: phân quyền cho những thư mục, file này cẩn thận.
                 </div>
             </div>
         </div>
